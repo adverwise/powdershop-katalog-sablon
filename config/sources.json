@@ -1,0 +1,5 @@
+{
+ "_not": "ikas'ın mevcut Meta kataloglarını besleyen feed'ler (ikas üretir, saatlik). Ortam değişkeni (FEED_PARENT_URL / FEED_TR_URL) verilirse o kullanılır.",
+ "parent": "https://ikas-exporter-app.ikasapps.com/api/exports/39581dee-b538-4266-aeaa-5ae8461bdd8a/cb1b4ee6-edfb-4537-86e1-f14fe461b754.xml?templateType=10&domainUrl=powdershop.com.tr&salesChannelId=3edcc9a1-5fc3-4600-80ef-49f110b7f0e3&inactiveProducts=false&storeName=powdershop&showOutStocks=false&showStockCount=false&showCurrency=true&showSalePrice=true&showMpn=false&showProductType=true&separateCategoriesWithComma=true",
+ "tr": "https://api.myikas.com/api/admin/ms/39581dee-b538-4266-aeaa-5ae8461bdd8a/3edcc9a1-5fc3-4600-80ef-49f110b7f0e3/facebook/feed.csv"
+}

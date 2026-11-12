@@ -1,0 +1,55 @@
+name: Katalog görselleri ve feed'ler
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # her saat başı +17 dk (UTC)
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: katalog-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Playwright Chromium önbelleği
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - run: npx playwright install --with-deps chromium
+
+      - name: Önceki yayını al (değişmeyen görseller yeniden render edilmesin)
+        run: git clone --depth 1 --branch gh-pages "https://github.com/${{ github.repository }}.git" prev || mkdir -p prev
+
+      - name: Render + feed üret
+        env:
+          PAGES_BASE: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+        run: node build.js --prev prev --out site
+
+      - name: gh-pages'e yayınla
+        working-directory: site
+        run: |
+          git init -q -b gh-pages
+          git config user.name "katalog-bot"
+          git config user.email "katalog-bot@users.noreply.github.com"
+          git add -A
+          git commit -qm "Yayın $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -qf "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" gh-pages
