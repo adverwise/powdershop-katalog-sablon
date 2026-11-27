@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04   # sabit sürüm: ubuntu-latest değişince bozulmasın
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -33,6 +33,9 @@ jobs:
         with:
           path: ~/.cache/ms-playwright
           key: pw-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
+      - name: Bozuk üçüncü taraf apt kaynaklarını kapat
+        run: sudo rm -f /etc/apt/sources.list.d/microsoft*.list /etc/apt/sources.list.d/microsoft*.sources || true
 
       - run: npx playwright install --with-deps chromium
 
