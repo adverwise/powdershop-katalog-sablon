@@ -1,0 +1,36 @@
+{
+ "updated": "2026-11-28T19:06:23.420Z",
+ "template_version": "589c0b07",
+ "feeds": {
+  "kosu": {
+   "url": "https://adverwise.github.io/powdershop-katalog-sablon/feeds/kosu.xml",
+   "items": 19,
+   "failed": 0
+  },
+  "tnf-kis": {
+   "url": "https://adverwise.github.io/powdershop-katalog-sablon/feeds/tnf-kis.xml",
+   "items": 71,
+   "failed": 0
+  },
+  "slam": {
+   "url": "https://adverwise.github.io/powdershop-katalog-sablon/feeds/slam.xml",
+   "items": 19,
+   "failed": 0
+  },
+  "stanley": {
+   "url": "https://adverwise.github.io/powdershop-katalog-sablon/feeds/stanley.xml",
+   "items": 38,
+   "failed": 0
+  },
+  "birkenstock": {
+   "url": "https://adverwise.github.io/powdershop-katalog-sablon/feeds/birkenstock.xml",
+   "items": 33,
+   "failed": 0
+  },
+  "smith": {
+   "url": "https://adverwise.github.io/powdershop-katalog-sablon/feeds/smith.xml",
+   "items": 39,
+   "failed": 0
+  }
+ }
+}
